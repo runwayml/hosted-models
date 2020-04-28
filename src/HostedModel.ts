@@ -87,22 +87,19 @@ export class HostedModel {
     } catch (err) {
       throw new NetworkError(err.code);
     }
-    if (
-      !result.headers['content-type'].includes('application/json') ||
-      !(result.status >= 200 && result.status < 300)
-    ) {
+    if (this.isHostedModelResponseError(result)) {
       if (result.status === 401) throw new PermissionDeniedError();
       else if (result.status === 404) throw new NotFoundError();
       else if (result.status === 500) throw new ModelError();
       throw new UnexpectedError();
-      // const body =
-      //   typeof result.data === 'object'
-      //     ? JSON.stringify(result.data)
-      //     : result.data;
-      // throw Error(
-      //   `Unexpected HTTP response from hosted model ${result.status}: ${body}`
-      // );
     }
     return result.data;
+  }
+
+  private async isHostedModelResponseError(response: AxiosResponse) {
+    return (
+      !response.headers['content-type'].includes('application/json') ||
+      !(response.status >= 200 && response.status < 300)
+    );
   }
 }
