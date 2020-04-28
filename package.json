@@ -1,0 +1,48 @@
+{
+  "name": "@runway/hosted-models",
+  "version": "1.0.0",
+  "description": "Interact with Runway Hosted Models using only a few lines of code!",
+  "scripts": {
+    "compile": "tsc",
+    "bundle": "browserify build/index.js -o dist/index.js",
+    "build": "npm run compile && npm run bundle",
+    "lint": "eslint . --cache --ext=.ts --fix",
+    "prettier": "pretty-quick --staged --pattern \"**/*.+(js|jsx|ts|tsx)\"",
+    "predeploy": "npm run build",
+    "deploy": "bash deploy.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/runwayml/hosted-models.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/runwayml/hosted-models/issues"
+  },
+  "homepage": "https://github.com/runwayml/hosted-models#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "browserify": "^16.5.1",
+    "concurrently": "^5.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "husky": "^4.2.3",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "concurrently \"npm run prettier\" \"npm run build\" \"npm run lint\""
+    }
+  }
+}
