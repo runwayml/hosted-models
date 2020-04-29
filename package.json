@@ -4,7 +4,7 @@
   "description": "Interact with Runway Hosted Models with only a few lines of code!",
   "main": "build/index.js",
   "scripts": {
-    "publish": "npm run build && npm publish --access public",
+    "prepublishOnly": "npm run build",
     "build": "concurrently \"npm run compile && npm run bundle && npm run minify\" \"npm run docs\"",
     "docs": "typedoc --stripInternal --out docs src",
     "compile": "tsc",
