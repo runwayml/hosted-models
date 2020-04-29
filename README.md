@@ -67,7 +67,7 @@ This library is super simple to use; It exposes a single `HostedModels` class wi
   - [`.isAwake()`](#isAwake-method)
   - [`.waitUntilAwake()`](#waitUntilAwake-method)
 
-> Be sure to use `rw.HostedModel()` if you are including the library via a `<script>` in the [Browser](#browser).
+> Note: Be sure to use `rw.HostedModel()` if you are including the library via a `<script>` in the [Browser](#browser).
 
 ### `HostedModels` Constructor
 
@@ -143,7 +143,7 @@ if (!model.isAwake()) {
 await model.query(input);
 ```
 
-> A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
+> Note: A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
 
 ### `.waitUntilAwake()` Method
 
@@ -159,7 +159,7 @@ await model.query(input);
 setProcessing(false);
 ```
 
-A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
+> Note: A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
 
 ## License
 
