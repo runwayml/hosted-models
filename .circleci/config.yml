@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install jq
-          command: apt-get install jq
+          command: sudo apt-get install jq
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
