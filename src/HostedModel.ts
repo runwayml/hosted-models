@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import {
+  InvlaidURLError,
   ModelError,
   NetworkError,
   NotFoundError,
@@ -29,6 +30,7 @@ export class HostedModel {
     };
     if (this.token) this.headers['Authorization'] = `Bearer ${this.token}`;
     this.responseCodesToRetry = [502, 429];
+    if (!this.isValidV1URL(this.url)) throw new InvlaidURLError();
   }
 
   async root() {
@@ -96,10 +98,14 @@ export class HostedModel {
     return result.data;
   }
 
-  private async isHostedModelResponseError(response: AxiosResponse) {
+  private isHostedModelResponseError(response: AxiosResponse) {
     return (
       !response.headers['content-type'].includes('application/json') ||
       !(response.status >= 200 && response.status < 300)
     );
+  }
+
+  private isValidV1URL(url: string) {
+    return /^https{0,1}:\/\/.+\.runwayml\.cloud\/v1/.test(url);
   }
 }

@@ -25,6 +25,14 @@ export class ModelError extends Error {
   }
 }
 
+export class InvlaidURLError extends Error {
+  constructor() {
+    super(
+      `The url you've provided is not valid. Your Hosted Model your must be in the format https://my-model.hosted-models.runwayml.cloud/v1.`
+    );
+  }
+}
+
 export class NetworkError extends Error {
   constructor(code) {
     super(
