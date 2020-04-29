@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dist": "npm run build && npm run bundle && npm run minify",
-    "bundle": "browserify build/index.js --standalone rw -o dist/index-standalone.js",
-    "minify": "terser --compress dist/index.js -o dist/index.min.js",
+    "bundle": "browserify build/index.js --standalone rw -o dist/hosted-models.js",
+    "minify": "terser --compress --output dist/hosted-models.min.js -- dist/hosted-models.js",
     "lint": "eslint . --cache --ext=.ts --fix",
     "prettier": "pretty-quick --staged --pattern \"**/*.+(js|jsx|ts|tsx)\"",
     "test": "echo \"Error: no test specified\" && exit 1"
