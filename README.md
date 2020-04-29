@@ -57,6 +57,110 @@ const prompt = 'Hey text generation model, finish my sentence';
 model.query({ prompt }).then(result => console.log(result));
 ```
 
+## Usage
+
+This library is super simple to use; It exposes a single `HostedModels` class with only four methods:
+
+- [`HostedModel`](#hostedmodels-constructor)
+  - [`.info()`](#info-method)
+  - [`.query()`](#query-method)
+  - [`.isAwake()`](#isAwake-method)
+  - [`.waitUntilAwake()`](#waitUntilAwake-method)
+
+> Be sure to use `rw.HostedModel()` if you are including the library via a `<script>` in the [Browser](#browser).
+
+### `HostedModels` Constructor
+
+The `HostedModel` constructor takes a configuration object with two properties, `url` and `token` (required only if the model is private).
+
+```javascript
+const model = new HostedModel({
+  url: 'https://example-text-generator.hosted-models.runwayml.cloud/v1',
+  token: 'my-private-hosted-model-token', // not required for public models
+});
+```
+
+### `.info()` Method
+
+This method returns the input/output spec expected by this model's `query()` method.
+
+```javascript
+const info = await model.info();
+console.log(info);
+//// Note: These values will be different for each model
+// {
+//   "description": "Generate text conditioned on prompt",
+//   "name": "generate_batch",
+//   "inputs": [
+//     {
+//       "default": "",
+//       "description": null,
+//       "minLength": 0,
+//       "name": "prompt",
+//       "type": "text"
+//     },
+//     ...
+//   ],
+//   "outputs": [
+//     {
+//       "default": "",
+//       "description": null,
+//       "minLength": 0,
+//       "name": "generated_text",
+//       "type": "text"
+//     },
+//     ...
+//   ]
+// }
+```
+
+### `.query()` Method
+
+`query()` is used to trigger the model to process input, and return output.
+
+```javascript
+const result = await model.query({
+  prompt: 'Hey text generation model, finish my sentence',
+});
+console.log(result);
+//// Note: These values will be different for each model
+// {
+//   generated_text: 'Hey text generation model, finish my sentence please.',
+//   encountered_end: true
+// }
+```
+
+### `.isAwake()` Method
+
+The `isAwake()` method returns `true` if the model is already awake and processing requests quickly, or `false` if it is still waking up. A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
+
+```javascript
+if (!model.isAwake()) {
+  showLoadingScreen(); // this is a fake function for demonstration
+}
+
+// A model doesn't have to be awake for you to make requests to it
+await model.query(input);
+```
+
+> A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
+
+### `.waitUntilAwake()` Method
+
+The `.waitUntilAwake()` method returns a promise that will resolve as soon as the model is awake. This is useful if you'd prefer to wait to perform some action until after the model can be expected to process them quickly.
+
+```javascript
+setLoading(true); // this is a fake function for demonstration
+await model.waitUntilAwake();
+setLoading(false);
+
+setProcessing(true); // this is also a fake function for demonstration
+await model.query(input);
+setProcessing(false);
+```
+
+A model that is waking up can still process all requests (e.g. `info()` and `query()`), they just might take a bit longer to respond. Learn more about Hosted Model states [here](https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states).
+
 ## License
 
 This library is released under the terms of the [MIT license](LICENSE).

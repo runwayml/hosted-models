@@ -79,31 +79,29 @@
 					<li>Includes friendly error reporting with messages for humans, so you can better understand why something went wrong.</li>
 				</ul>
 				<p>If your project is written in JavaScript, we encourage you to use this library!</p>
-				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
-					<h2>Example</h2>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
 				</a>
+				<p>See the <a href="examples"><code>examples/</code></a> directory for a full list of examples.</p>
 				<a href="#nodejs--module-syntax" id="nodejs--module-syntax" style="color: inherit; text-decoration: none;">
 					<h3>Node.js / Module Syntax</h3>
 				</a>
 				<p>If you are using Node.js or packaging your front-end code via a bundler, you can install the module using <code>npm</code>.</p>
 				<pre><code class="language-bash">npm install --save @runwayml/hosted-models</code></pre>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { HostedModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@runwayml/hosted-models'</span>)
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { HostedModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@runwayml/hosted-models'</span>);
 
 <span class="hljs-keyword">const</span> model = <span class="hljs-keyword">new</span> HostedModel({
   <span class="hljs-attr">url</span>: <span class="hljs-string">'https://my-model.hosted-models.runwayml.cloud/v1'</span>,
   <span class="hljs-attr">token</span>: <span class="hljs-string">'my-private-hosted-model-token'</span>,
-})
+});
 
-<span class="hljs-keyword">const</span> prompt = <span class="hljs-string">"Hey text generation model, finish my sentence"</span>g
-model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result))</code></pre>
+<span class="hljs-keyword">const</span> prompt = <span class="hljs-string">'Hey text generation model, finish my sentence'</span>;
+model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result));</code></pre>
 				<a href="#browser" id="browser" style="color: inherit; text-decoration: none;">
 					<h3>Browser</h3>
 				</a>
-				<p>If you prefer to access the library in the Browser using a <code>&lt;script&gt;</code> tag, you can include the code snippet below in your HTML files.</p>
-				<pre><code class="language-html"><span class="hljs-comment">&lt;!--
-  You can replace hosted-models.js with hosted-models.min.js to load minified production code
---&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<p>If you prefer to access the library in the Browser using a <code>&lt;script&gt;</code> tag, you can include the code snippet below in your HTML files. Replace <code>hosted-models.js</code> with <code>hosted-models.min.js</code> if you prefer a minified build for production environments.</p>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 				<p>This injects the library into the window and exposes it via the <code>rw</code> namespace.</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> model = <span class="hljs-keyword">new</span> rw.HostedModel({
   <span class="hljs-attr">url</span>: <span class="hljs-string">'https://my-model.hosted-models.runwayml.cloud/v1'</span>,
@@ -112,10 +110,107 @@ model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-param
 
 <span class="hljs-keyword">const</span> prompt = <span class="hljs-string">'Hey text generation model, finish my sentence'</span>;
 model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result));</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>This library is super simple to use; It exposes a single <code>HostedModels</code> class with only four methods:</p>
+				<ul>
+					<li><a href="#hostedmodels-constructor"><code>HostedModel</code></a><ul>
+							<li><a href="#info-method"><code>.info()</code></a></li>
+							<li><a href="#query-method"><code>.query()</code></a></li>
+							<li><a href="#isAwake-method"><code>.isAwake()</code></a></li>
+							<li><a href="#waitUntilAwake-method"><code>.waitUntilAwake()</code></a></li>
+						</ul>
+					</li>
+				</ul>
+				<blockquote>
+					<p>Be sure to use <code>rw.HostedModel()</code> if you are including the library via a <code>&lt;script&gt;</code> in the <a href="#browser">Browser</a>.</p>
+				</blockquote>
+				<a href="#hostedmodels-constructor" id="hostedmodels-constructor" style="color: inherit; text-decoration: none;">
+					<h3><code>HostedModels</code> Constructor</h3>
+				</a>
+				<p>The <code>HostedModel</code> constructor takes a configuration object with two properties, <code>url</code> and <code>token</code> (required only if the model is private).</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> model = <span class="hljs-keyword">new</span> HostedModel({
+  <span class="hljs-attr">url</span>: <span class="hljs-string">'https://example-text-generator.hosted-models.runwayml.cloud/v1'</span>,
+  <span class="hljs-attr">token</span>: <span class="hljs-string">'my-private-hosted-model-token'</span>, <span class="hljs-comment">// not required for public models</span>
+});</code></pre>
+				<a href="#info-method" id="info-method" style="color: inherit; text-decoration: none;">
+					<h3><code>.info()</code> Method</h3>
+				</a>
+				<p>This method returns the input/output spec expected by this model&#39;s <code>query()</code> method.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> model.info();
+<span class="hljs-built_in">console</span>.log(info);
+<span class="hljs-comment">//// Note: These values will be different for each model</span>
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   "description": "Generate text conditioned on prompt",</span>
+<span class="hljs-comment">//   "name": "generate_batch",</span>
+<span class="hljs-comment">//   "inputs": [</span>
+<span class="hljs-comment">//     {</span>
+<span class="hljs-comment">//       "default": "",</span>
+<span class="hljs-comment">//       "description": null,</span>
+<span class="hljs-comment">//       "minLength": 0,</span>
+<span class="hljs-comment">//       "name": "prompt",</span>
+<span class="hljs-comment">//       "type": "text"</span>
+<span class="hljs-comment">//     },</span>
+<span class="hljs-comment">//     ...</span>
+<span class="hljs-comment">//   ],</span>
+<span class="hljs-comment">//   "outputs": [</span>
+<span class="hljs-comment">//     {</span>
+<span class="hljs-comment">//       "default": "",</span>
+<span class="hljs-comment">//       "description": null,</span>
+<span class="hljs-comment">//       "minLength": 0,</span>
+<span class="hljs-comment">//       "name": "generated_text",</span>
+<span class="hljs-comment">//       "type": "text"</span>
+<span class="hljs-comment">//     },</span>
+<span class="hljs-comment">//     ...</span>
+<span class="hljs-comment">//   ]</span>
+<span class="hljs-comment">// }</span></code></pre>
+				<a href="#query-method" id="query-method" style="color: inherit; text-decoration: none;">
+					<h3><code>.query()</code> Method</h3>
+				</a>
+				<p><code>query()</code> is used to trigger the model to process input, and return output.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> model.query({
+  <span class="hljs-attr">prompt</span>: <span class="hljs-string">'Hey text generation model, finish my sentence'</span>,
+});
+<span class="hljs-built_in">console</span>.log(result);
+<span class="hljs-comment">//// Note: These values will be different for each model</span>
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   generated_text: 'Hey text generation model, finish my sentence please.',</span>
+<span class="hljs-comment">//   encountered_end: true</span>
+<span class="hljs-comment">// }</span></code></pre>
+				<a href="#isawake-method" id="isawake-method" style="color: inherit; text-decoration: none;">
+					<h3><code>.isAwake()</code> Method</h3>
+				</a>
+				<p>The <code>isAwake()</code> method returns <code>true</code> if the model is already awake and processing requests quickly, or <code>false</code> if it is still waking up. A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">if</span> (!model.isAwake()) {
+  showLoadingScreen(); <span class="hljs-comment">// this is a fake function for demonstration</span>
+}
+
+<span class="hljs-comment">// A model doesn't have to be awake for you to make requests to it</span>
+<span class="hljs-keyword">await</span> model.query(input);</code></pre>
+				<blockquote>
+					<p>A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
+				</blockquote>
+				<a href="#waituntilawake-method" id="waituntilawake-method" style="color: inherit; text-decoration: none;">
+					<h3><code>.waitUntilAwake()</code> Method</h3>
+				</a>
+				<p>The <code>.waitUntilAwake()</code> method returns a promise that will resolve as soon as the model is awake. This is useful if you&#39;d prefer to wait to perform some action until after the model can be expected to process them quickly.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">set</span><span class="hljs-title">Loading</span>(<span class="hljs-params">true</span>); // <span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">a</span> <span class="hljs-title">fake</span> <span class="hljs-title">function</span> <span class="hljs-title">for</span> <span class="hljs-title">demonstration</span>
+<span class="hljs-title">await</span> <span class="hljs-title">model</span>.<span class="hljs-title">waitUntilAwake</span>();
+<span class="hljs-title">setLoading</span>(<span class="hljs-params">false</span>);
+
+<span class="hljs-title">setProcessing</span>(<span class="hljs-params">true</span>); // <span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">also</span> <span class="hljs-title">a</span> <span class="hljs-title">fake</span> <span class="hljs-title">function</span> <span class="hljs-title">for</span> <span class="hljs-title">demonstration</span>
+<span class="hljs-title">await</span> <span class="hljs-title">model</span>.<span class="hljs-title">query</span>(<span class="hljs-params">input</span>);
+<span class="hljs-title">setProcessing</span>(<span class="hljs-params">false</span>);</code></pre>
+				<p>A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
 				<p>This library is released under the terms of the <a href="LICENSE">MIT license</a>.</p>
+				<a href="#changelog" id="changelog" style="color: inherit; text-decoration: none;">
+					<h2>CHANGELOG</h2>
+				</a>
+				<p>You can view a list of changes <a href="CHANGELOG.md">here</a>.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
