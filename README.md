@@ -13,7 +13,9 @@ This library is a thin wrapper around the Hosted Models [HTTP API](https://learn
 
 If your project is written in JavaScript, we encourage you to use this library!
 
-## Example
+## Examples
+
+See the [`examples/`](examples) directory for a full list of examples.
 
 ### Node.js / Module Syntax
 
@@ -58,3 +60,7 @@ model.query({ prompt }).then(result => console.log(result));
 ## License
 
 This library is released under the terms of the [MIT license](LICENSE).
+
+## CHANGELOG
+
+You can view a list of changes [here](CHANGELOG.md).

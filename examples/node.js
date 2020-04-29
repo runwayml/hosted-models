@@ -1,13 +1,12 @@
-const { HostedModel } = require('@runway/hosted-models');
+const { HostedModel } = require('@runwayml/hosted-models');
 
 async function main() {
   const model = new HostedModel({
-    url: 'https://lotr.hosted-models.runwayml.cloud/v1/',
+    url: 'https://my-model.hosted-models.runwayml.cloud/v1',
+    token: 'my-private-hosted-model-token',
   });
-  // await model.waitUntilAwake();
   const result = await model.query({
-    prompt: 'The one ring to',
-    max_characters: 180,
+    prompt: 'Hey text generation model, finish my sentence',
   });
   console.log(result.generated_text);
 }
