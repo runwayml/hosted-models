@@ -21,7 +21,7 @@ export class PermissionDeniedError extends Error {
 export class NotFoundError extends Error {
   constructor() {
     super(
-      `The model url you've provided is invalid. Make sure this value is correct and that the model is "active".`
+      `Model not found. Make sure the url is correct and that the model is "active".`
     );
   }
 }
