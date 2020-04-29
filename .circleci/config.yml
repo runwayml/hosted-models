@@ -1,0 +1,41 @@
+version: 2.1
+jobs:
+  publish:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run:
+          name: Install jq
+          command: apt-get install jq
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Publish If New Version
+          command: |
+            NPM_VERSION=$(npm view @runwayml/hosted-models versions --json | jq -r '.[-1]')
+            LOCAL_VERSION=$(jq -r .version package.json)
+            if [[ "$NPM_VERSION" != "$LOCAL_VERSION" ]]; then
+              echo "Local version $LOCAL_VERSION doesn't match npm version $NPM_VERSION"
+              echo "Publishing a new release!"
+              echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+              npm publish --access public
+            else
+              echo "Local version $LOCAL_VERSION matches npm version $NPM_VERSION"
+              echo "Not publishing a new release."
+            fi
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+workflows:
+  version: 2
+  publish:
+    jobs:
+      - publish:
+          filters:
+            branches:
+              only: master
