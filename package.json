@@ -21,6 +21,13 @@
   "bugs": {
     "url": "https://github.com/runwayml/hosted-models/issues"
   },
+  "keywords": [
+    "runway",
+    "runwayml",
+    "hosted models",
+    "machine learning",
+    "artificial intelligence"
+  ],
   "homepage": "https://github.com/runwayml/hosted-models#readme",
   "devDependencies": {
     "@types/node": "^13.13.4",
