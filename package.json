@@ -1,15 +1,15 @@
 {
-  "name": "@runway/hosted-models",
-  "version": "1.0.0",
-  "description": "Interact with Runway Hosted Models using only a few lines of code!",
+  "name": "@runwayml/hosted-models",
+  "version": "0.1.0",
+  "description": "Interact with Runway Hosted Models with only a few lines of code!",
+  "main": "build/index.js",
   "scripts": {
-    "compile": "tsc",
-    "bundle": "browserify build/index.js -o dist/index.js",
-    "build": "npm run compile && npm run bundle",
+    "build": "tsc",
+    "dist": "npm run build && npm run bundle && npm run minify",
+    "bundle": "browserify build/index.js --standalone rw -o dist/index-standalone.js",
+    "minify": "terser --compress dist/index.js -o dist/index.min.js",
     "lint": "eslint . --cache --ext=.ts --fix",
     "prettier": "pretty-quick --staged --pattern \"**/*.+(js|jsx|ts|tsx)\"",
-    "predeploy": "npm run build",
-    "deploy": "bash deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/runwayml/hosted-models#readme",
   "devDependencies": {
+    "@types/node": "^13.13.4",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "browserify": "^16.5.1",
@@ -34,6 +35,7 @@
     "husky": "^4.2.3",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "terser": "^4.6.12",
     "ts-node": "^8.7.0",
     "typescript": "^3.8.3"
   },

@@ -1,6 +1,3 @@
-import { HostedModel } from './HostedModel';
+import { HostedModel, HostedModelConfig } from './HostedModel';
 
-if (window) {
-  //@ts-ignore
-  window.HostedModel = HostedModel;
-}
+export { HostedModel, HostedModelConfig };
