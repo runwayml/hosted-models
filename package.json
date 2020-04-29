@@ -1,6 +1,6 @@
 {
   "name": "@runwayml/hosted-models",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Interact with Runway Hosted Models with only a few lines of code!",
   "main": "build/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/runwayml/hosted-models.git"
   },
-  "author": "",
+  "author": "Runway AI, Inc",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/runwayml/hosted-models/issues"

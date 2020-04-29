@@ -2,6 +2,7 @@
 
 ## v0.2.0
 
+- Add CI/CD releases via CircleCI
 - Fix infinite loop with `npm run build`.
 - Add inline documentation with TypeDoc, generated in `docs/`.
 - Add `InvalidArgumentError` type and throw it when invalid arguments are passed to public methods.

@@ -5,14 +5,10 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
-      - run:
-          name: Install jq
-          command: sudo apt-get install jq
+      - run: sudo apt-get install jq
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install Dependencies
-          command: npm install
+      - run: npm install
       - run:
           name: Publish If New Version
           command: |
