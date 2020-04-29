@@ -4,23 +4,22 @@
     "alwaysStrict": true,
     "declaration": false,
     "diagnostics": false,
-    "lib": ["es7", "es5", "dom", "es2015"],
     "module": "CommonJS",
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "preserveConstEnums": true,
     "pretty": true,
     "sourceMap": true,
-    "target": "es2017",
+    "target": "ES5",
     "outDir": "./build",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts"],
-  "exclude": ["build", "node_modules"]
+  "exclude": ["build", "dist", "node_modules"]
 }

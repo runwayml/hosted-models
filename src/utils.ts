@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export function delay(millis) {
+export function delay(millis: number) {
   return new Promise(resolve => setTimeout(resolve, millis));
 }
 

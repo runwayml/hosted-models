@@ -16,8 +16,8 @@ export interface HostedModelConfig {
 }
 
 export class HostedModel {
-  private url;
-  private token;
+  private url: string;
+  private token: string;
   private headers: { [name: string]: string };
   private responseCodesToRetry: number[];
 
@@ -49,7 +49,7 @@ export class HostedModel {
     });
   }
 
-  async query(input) {
+  async query(input: any) {
     return this.requestHostedModel({
       url: `${this.url}/query`,
       method: 'POST',

@@ -4,8 +4,8 @@
   "description": "Interact with Runway Hosted Models with only a few lines of code!",
   "main": "build/index.js",
   "scripts": {
-    "build": "tsc",
-    "dist": "npm run build && npm run bundle && npm run minify",
+    "build": "npm run compile && npm run build && npm run bundle && npm run minify",
+    "compile": "tsc",
     "bundle": "browserify build/index.js --standalone rw -o dist/hosted-models.js",
     "minify": "terser --compress --output dist/hosted-models.min.js -- dist/hosted-models.js",
     "lint": "eslint . --cache --ext=.ts --fix",

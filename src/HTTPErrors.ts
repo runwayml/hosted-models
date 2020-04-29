@@ -34,7 +34,7 @@ export class InvlaidURLError extends Error {
 }
 
 export class NetworkError extends Error {
-  constructor(code) {
+  constructor(code: string) {
     super(
       `A network error has ocurred${
         code ? `: ${code}` : ``
