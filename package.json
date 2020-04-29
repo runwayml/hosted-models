@@ -4,7 +4,9 @@
   "description": "Interact with Runway Hosted Models with only a few lines of code!",
   "main": "build/index.js",
   "scripts": {
-    "build": "npm run compile && npm run build && npm run bundle && npm run minify",
+    "publish": "npm run build && npm publish --access public",
+    "build": "concurrently \"npm run compile && npm run bundle && npm run minify\" \"npm run docs\"",
+    "docs": "typedoc --stripInternal --out docs src",
     "compile": "tsc",
     "bundle": "browserify build/index.js --standalone rw -o dist/hosted-models.js",
     "minify": "terser --compress --output dist/hosted-models.min.js -- dist/hosted-models.js",
@@ -44,6 +46,7 @@
     "pretty-quick": "^2.0.1",
     "terser": "^4.6.12",
     "ts-node": "^8.7.0",
+    "typedoc": "^0.17.6",
     "typescript": "^3.8.3"
   },
   "dependencies": {

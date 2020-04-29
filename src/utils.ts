@@ -1,3 +1,5 @@
+/** @ignore */ /** */
+// Ignore utils from generated docs ^
 import axios, { AxiosRequestConfig } from 'axios';
 
 export function delay(millis: number) {

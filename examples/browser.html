@@ -4,10 +4,15 @@
     <title>Basic Example</title>
   </head>
   <body>
-    <script src="../dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
     <script>
-      console.log(HostedModel);
-      console.log(rw);
+      const model = new rw.HostedModel({
+        url: 'https://my-model.hosted-models.runwayml.cloud/v1',
+        token: 'my-private-hosted-model-token',
+      });
+
+      const prompt = 'Hey text generation model, finish my sentence';
+      model.query({ prompt }).then(result => console.log(result));
     </script>
   </body>
 </html>

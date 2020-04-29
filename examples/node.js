@@ -1,4 +1,4 @@
-const { HostedModel } = require('../build');
+const { HostedModel } = require('@runway/hosted-models');
 
 async function main() {
   const model = new HostedModel({
@@ -12,6 +12,4 @@ async function main() {
   console.log(result.generated_text);
 }
 
-main().catch(err => {
-  console.error(err);
-});
+main().catch(err => console.error(err));

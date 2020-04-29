@@ -24,38 +24,35 @@ npm install --save @runwayml/hosted-models
 ```
 
 ```javascript
-const { HostedModel } = require('@runwayml/hosted-models')
+const { HostedModel } = require('@runwayml/hosted-models');
 
 const model = new HostedModel({
-  url: 'https://my-model.hosted-models.runwayml.com/v1'
-  token: 'my-private-hosted-model-token'
-})
+  url: 'https://my-model.hosted-models.runwayml.cloud/v1',
+  token: 'my-private-hosted-model-token',
+});
 
-const prompt = "Hey text generation model, finish my sentence"g
-model.query({ prompt }).then(result => console.log(result))
+const prompt = 'Hey text generation model, finish my sentence';
+model.query({ prompt }).then(result => console.log(result));
 ```
 
 ### Browser
 
-If you prefer to access the library in the Browser using a `<script>` tag, you can include the code snippet below in your HTML files.
+If you prefer to access the library in the Browser using a `<script>` tag, you can include the code snippet below in your HTML files. Replace `hosted-models.js` with `hosted-models.min.js` if you prefer a minified build for production environments.
 
 ```html
-<!--
-  You can replace hosted-models.min.js with hosted-models.js to use the non-minified version if you prefer
--->
-<script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
 ```
 
 This injects the library into the window and exposes it via the `rw` namespace.
 
 ```javascript
 const model = new rw.HostedModel({
-  url: 'https://my-model.hosted-models.runwayml.com/v1'
-  token: 'my-private-hosted-model-token'
-})
+  url: 'https://my-model.hosted-models.runwayml.cloud/v1',
+  token: 'my-private-hosted-model-token',
+});
 
-const prompt = "Hey text generation model, finish my sentence"
-model.query({ prompt }).then(result => console.log(result))
+const prompt = 'Hey text generation model, finish my sentence';
+model.query({ prompt }).then(result => console.log(result));
 ```
 
 ## License
