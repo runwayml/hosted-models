@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.0
+
+- Add usage section in README.
+- More descriptive error message for `NotFoundError`.
+- Wake up model during `HostedModel` construction.
+- Add optional `pollIntervalMillis` parameter to `HostedModel.waitUntilAwake()` method.
+
 ## v0.2.0
 
 - Add CI/CD releases via CircleCI

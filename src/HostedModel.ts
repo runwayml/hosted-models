@@ -78,6 +78,10 @@ export class HostedModel {
     if (this.token) this.headers['Authorization'] = `Bearer ${this.token}`;
     this.responseCodesToRetry = [502, 429];
     if (!this.isValidV1URL(this.url)) throw new InvlaidURLError();
+    // Wake up the model during construction because it will probably be used soon
+    this.root()
+      .then(result => result)
+      .catch(err => err);
   }
 
   /**
@@ -141,8 +145,11 @@ export class HostedModel {
    *  doSomething(output)
    * }
    * ```
+   *
+   * @param pollIntervalMillis [[waitUntilAwake]] The rate that this function will poll
+   * the hosted model endpoint to check if it is awake yet.
    */
-  async waitUntilAwake(): Promise<void> {
+  async waitUntilAwake(pollIntervalMillis = 1000): Promise<void> {
     return new Promise((resolve, reject) => {
       (async () => {
         try {
@@ -152,7 +159,7 @@ export class HostedModel {
               resolve();
               return;
             }
-            await delay(500);
+            await delay(pollIntervalMillis);
           }
         } catch (err) {
           reject(err);

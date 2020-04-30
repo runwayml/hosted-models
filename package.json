@@ -1,6 +1,6 @@
 {
   "name": "@runwayml/hosted-models",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Interact with Runway Hosted Models with only a few lines of code!",
   "main": "build/index.js",
   "scripts": {
