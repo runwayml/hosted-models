@@ -1,5 +1,7 @@
 # Hosted Models JavaScript SDK
 
+![Runway Hosted Models JavaScript SDK Image](https://runway-static-assets.s3.amazonaws.com/github/hosted-models-js-sdk.jpg)
+
 A small library for interfacing with RunwayML [Hosted Models](https://learn.runwayml.com/#/how-to/hosted-models) using only a few lines of code. Works in both Node.js and the Browser.
 
 ## Benefits
