@@ -42,7 +42,7 @@ model.query({ prompt }).then(result => console.log(result));
 If you prefer to access the library in the Browser using a `<script>` tag, you can include the code snippet below in your HTML files. Replace `hosted-models.js` with `hosted-models.min.js` if you prefer a minified build for production environments.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@0.3.0/dist/hosted-models.js"></script>
 ```
 
 This injects the library into the window and exposes it via the `rw` namespace.
