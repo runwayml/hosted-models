@@ -124,7 +124,7 @@ model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-param
 					</li>
 				</ul>
 				<blockquote>
-					<p>Be sure to use <code>rw.HostedModel()</code> if you are including the library via a <code>&lt;script&gt;</code> in the <a href="#browser">Browser</a>.</p>
+					<p>Note: Be sure to use <code>rw.HostedModel()</code> if you are including the library via a <code>&lt;script&gt;</code> in the <a href="#browser">Browser</a>.</p>
 				</blockquote>
 				<a href="#hostedmodels-constructor" id="hostedmodels-constructor" style="color: inherit; text-decoration: none;">
 					<h3><code>HostedModels</code> Constructor</h3>
@@ -189,7 +189,7 @@ model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-param
 <span class="hljs-comment">// A model doesn't have to be awake for you to make requests to it</span>
 <span class="hljs-keyword">await</span> model.query(input);</code></pre>
 				<blockquote>
-					<p>A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
+					<p>Note: A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
 				</blockquote>
 				<a href="#waituntilawake-method" id="waituntilawake-method" style="color: inherit; text-decoration: none;">
 					<h3><code>.waitUntilAwake()</code> Method</h3>
@@ -202,7 +202,9 @@ model.query({ prompt }).then(<span class="hljs-function"><span class="hljs-param
 <span class="hljs-title">setProcessing</span>(<span class="hljs-params">true</span>); // <span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">also</span> <span class="hljs-title">a</span> <span class="hljs-title">fake</span> <span class="hljs-title">function</span> <span class="hljs-title">for</span> <span class="hljs-title">demonstration</span>
 <span class="hljs-title">await</span> <span class="hljs-title">model</span>.<span class="hljs-title">query</span>(<span class="hljs-params">input</span>);
 <span class="hljs-title">setProcessing</span>(<span class="hljs-params">false</span>);</code></pre>
-				<p>A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
+				<blockquote>
+					<p>Note: A model that is waking up can still process all requests (e.g. <code>info()</code> and <code>query()</code>), they just might take a bit longer to respond. Learn more about Hosted Model states <a href="https://learn.runwayml.com/#/how-to/hosted-models?id=asleep-awakening-and-awake-states">here</a>.</p>
+				</blockquote>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
