@@ -10,11 +10,20 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm install
       - run:
+          name: Download awssecret2env
+          command: |
+            wget https://awssecret2env.s3.amazonaws.com/latest/awssecret2env-linux64
+            chmod +x awssecret2env-linux64 && mv awssecret2env-linux64 awssecret2env
+      - run:
+          name: Add .env
+          command: ./awssecret2env --export --output .env secrets.txt
+      - run:
           name: Publish If New Version
           command: |
             NPM_VERSION=$(npm view @runwayml/hosted-models versions --json | jq -r '.[-1]')
             LOCAL_VERSION=$(jq -r .version package.json)
             if [[ "$NPM_VERSION" != "$LOCAL_VERSION" ]]; then
+              source .env
               echo "Local version $LOCAL_VERSION doesn't match npm version $NPM_VERSION"
               echo "Publishing a new release!"
               echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
