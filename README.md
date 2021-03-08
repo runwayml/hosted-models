@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/runwayml/hosted-models)
+
 # Hosted Models JavaScript SDK
 
 [![Runway Hosted Models JavaScript SDK Image](https://runway-static-assets.s3.amazonaws.com/github/hosted-models-js-sdk.jpg)](https://runwayml.com)
